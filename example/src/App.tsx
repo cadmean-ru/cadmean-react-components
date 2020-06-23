@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react';
+import {Button} from 'react-bootstrap';
 
-import { ExampleComponent } from 'cadmean-react-components'
-import 'cadmean-react-components/dist/index.css'
+import { DeleteDialog } from 'cadmean-react-components';
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  let [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  return <div>
+    <Button onClick={() => setShowDeleteDialog(true)}>
+      Show delete dialog
+    </Button>
+
+    <DeleteDialog 
+      show={showDeleteDialog}
+      onHide={() => setShowDeleteDialog(false)}
+      onDelete={() => alert('deleted')}
+      title="Delete something?"
+      message="Are u sure?"
+    />
+  </div>
 }
 
 export default App
